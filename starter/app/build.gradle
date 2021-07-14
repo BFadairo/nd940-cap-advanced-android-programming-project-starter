@@ -72,8 +72,14 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$version_room"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     kapt "androidx.room:room-compiler:$version_room"
 
     // Location
     implementation "com.google.android.gms:play-services-location:$version_play_services_location"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
