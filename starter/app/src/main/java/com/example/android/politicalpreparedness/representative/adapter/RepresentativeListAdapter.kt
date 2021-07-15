@@ -42,8 +42,8 @@ class RepresentativeViewHolder(val binding: ListItemRepresentativeBinding): Recy
         binding.representative = item
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
 
-        //TODO: Show social links ** Hint: Use provided helper methods
-        //TODO: Show www link ** Hint: Use provided helper methods
+        if (item.official.channels != null && item.official.channels.isNotEmpty()) showSocialLinks(item.official.channels)
+        if (item.official.urls != null && item.official.urls.isNotEmpty()) showWWWLinks(item.official.urls)
 
         binding.executePendingBindings()
     }
@@ -84,7 +84,6 @@ class RepresentativeViewHolder(val binding: ListItemRepresentativeBinding): Recy
     }
 }
 
-//TODO: Create RepresentativeDiffCallback
 class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
     override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
         return oldItem.official.name == newItem.official.name
@@ -98,5 +97,3 @@ class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
 class RepresentativeListener(val clickListener: (representative: Representative) -> Unit) {
     fun onClick(clickedRepresentative: Representative) = clickListener(clickedRepresentative)
 }
-
-//TODO: Create RepresentativeListener
