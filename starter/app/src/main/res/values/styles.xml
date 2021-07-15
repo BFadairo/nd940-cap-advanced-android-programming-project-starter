@@ -10,6 +10,7 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+        <item name="android:fontFamily">@font/lato</item>
     </style>
 
     <!-- TODO: Add necessary styles -->
