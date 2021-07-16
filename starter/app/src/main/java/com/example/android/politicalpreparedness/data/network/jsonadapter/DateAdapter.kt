@@ -5,18 +5,19 @@ import com.squareup.moshi.ToJson
 import timber.log.Timber
 import java.text.DateFormat
 import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DateAdapter {
     @FromJson
     fun dateFromJson(electionDay: String): Date {
-        val myDate = DateFormat.getDateInstance()
-        try {
-            myDate.parse(electionDay)
+        val myFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return try {
+            val myDate = myFormatter.parse(electionDay)
+            myDate ?: Date()
         } catch (e: ParseException) {
             Timber.e("Error parsing date")
-        } finally {
-            return Date()
+            Date()
         }
     }
 
