@@ -12,15 +12,17 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ElectionRepository (
+class ElectionRepository(
     private val remoteRepository: RemoteRepository,
     private val localRepository: LocalRepository,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO): ElectionDataLocalSource,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ElectionDataLocalSource,
     ElectionDataRemoteSource {
 
-    override suspend fun insertElection(election: Election) = withContext(ioDispatcher){
-        localRepository.insertElection(election)
-    }
+    override suspend fun insertElection(election: Election): Result<String> =
+        withContext(ioDispatcher) {
+            return@withContext localRepository.insertElection(election)
+        }
 
     override suspend fun getAllElections(): Result<List<Election>> = withContext(ioDispatcher) {
         return@withContext localRepository.getAllElections()
@@ -30,12 +32,12 @@ class ElectionRepository (
         return@withContext localRepository.getElectionById(id)
     }
 
-    override suspend fun deleteElection(id: Int) {
-        localRepository.deleteElection(id)
+    override suspend fun deleteElection(id: Int): Result<String> = withContext(ioDispatcher) {
+        return@withContext localRepository.deleteElection(id)
     }
 
-    override suspend fun clear() {
-        localRepository.clear()
+    override suspend fun clear(): Result<String> = withContext(ioDispatcher) {
+        return@withContext localRepository.clear()
     }
 
     override suspend fun getElections(): Result<List<Election>> = withContext(ioDispatcher) {
@@ -49,8 +51,9 @@ class ElectionRepository (
         return@withContext remoteRepository.getVoterInfo(address, electionId)
     }
 
-    override suspend fun getRepresentativesByAddress(address: String): Result<RepresentativeResponse> = withContext(ioDispatcher) {
-        return@withContext remoteRepository.getRepresentativesByAddress(address)
-    }
+    override suspend fun getRepresentativesByAddress(address: String): Result<RepresentativeResponse> =
+        withContext(ioDispatcher) {
+            return@withContext remoteRepository.getRepresentativesByAddress(address)
+        }
 
 }

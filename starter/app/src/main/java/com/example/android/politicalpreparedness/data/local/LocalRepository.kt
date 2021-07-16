@@ -7,17 +7,20 @@ import com.example.android.politicalpreparedness.data.network.models.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.lang.Exception
 
 class LocalRepository internal constructor(
     private val electionDao: ElectionDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ElectionDataLocalSource {
-    override suspend fun insertElection(election: Election) {
+    override suspend fun insertElection(election: Election): Result<String> = withContext(ioDispatcher) {
         try {
             electionDao.insertElection(election)
+            return@withContext Result.Success("Election Successfully Saved")
         } catch (e: Exception) {
-            Log.i("LocalDataSource", "Error Saving Election: ${e.message}")
+            Timber.e("Error Saving Election: ${e.message}")
+            return@withContext Result.Error("There was an error saving the election: ${e.message}")
         }
     }
 
@@ -39,19 +42,23 @@ class LocalRepository internal constructor(
         }
     }
 
-    override suspend fun deleteElection(id: Int) {
+    override suspend fun deleteElection(id: Int): Result<String> = withContext(ioDispatcher) {
         try {
             electionDao.deleteElection(id)
+            return@withContext Result.Success("Election successfully deleted from Database")
         } catch (e: Exception) {
-            Log.e("LocalDataSource", "Error Deleting Election: ${e.message}")
+            Timber.e("Error Deleting Election: ${e.message}")
+            return@withContext Result.Error("There was a problem deleting the election: ${e.message}")
         }
     }
 
-    override suspend fun clear() {
+    override suspend fun clear(): Result<String> = withContext(ioDispatcher){
         try {
             electionDao.clear()
+            return@withContext Result.Success("All elections successfully wiped from database")
         } catch (e: Exception) {
-            Log.e("LocalDataSource", "Error clearing database: ${e.message}")
+            Timber.e("Error clearing database: ${e.message}")
+            return@withContext Result.Error("There was an error clearing the elections: ${e.message}")
         }
     }
 }
