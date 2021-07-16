@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ElectionRepository private constructor(
+class ElectionRepository (
     private val remoteRepository: RemoteRepository,
     private val localRepository: LocalRepository,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO): ElectionDataLocalSource,

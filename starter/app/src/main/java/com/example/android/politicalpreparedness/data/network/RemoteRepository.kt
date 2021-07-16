@@ -1,14 +1,12 @@
 package com.example.android.politicalpreparedness.data.network
 
 import android.util.Log
-import com.example.android.politicalpreparedness.data.network.models.Election
-import com.example.android.politicalpreparedness.data.network.models.RepresentativeResponse
-import com.example.android.politicalpreparedness.data.network.models.Result
-import com.example.android.politicalpreparedness.data.network.models.VoterInfoResponse
+import com.example.android.politicalpreparedness.data.network.models.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import timber.log.Timber
 
 class RemoteRepository internal constructor(
     private val civicsApiService: CivicsApiService,
@@ -17,10 +15,10 @@ class RemoteRepository internal constructor(
 
     override suspend fun getElections(): Result<List<Election>> = withContext(ioDispatcher) {
         try {
-            val elections = civicsApiService.getElections()
-            return@withContext Result.Success(elections)
+            val electionResponse = civicsApiService.getElections()
+            return@withContext Result.Success(electionResponse.elections)
         } catch (e: HttpException) {
-            Log.e("RemoteDataSource", "Error fetching elections: ${e.message()}")
+            Timber.e("Error fetching elections: ${e.message()}")
             return@withContext Result.Error("Could not retrieve elections from remote data source: ${e.message()}")
         }
     }
@@ -33,8 +31,7 @@ class RemoteRepository internal constructor(
             val voterInfoResponse = civicsApiService.getVoterInfo(address, electionId)
             return@withContext Result.Success(voterInfoResponse)
         } catch (e: HttpException) {
-            Log.e(
-                "RemoteDataSource",
+            Timber.e(
                 "Error fetching voter info from remote data source: ${e.message()}"
             )
             return@withContext Result.Error("Could not retrieve elections from remote data source ${e.message()}")
@@ -47,8 +44,7 @@ class RemoteRepository internal constructor(
                 val representatives = civicsApiService.getRepresentativesByAddress(address)
                 return@withContext Result.Success(representatives)
             } catch (e: HttpException) {
-                Log.e(
-                    "RemoteDataSource",
+                Timber.e(
                     "Error fetching representatives from remote data source: ${e.message()}"
                 )
                 return@withContext Result.Error("Could not retrieve representatives from remote data source: ${e.message()}")

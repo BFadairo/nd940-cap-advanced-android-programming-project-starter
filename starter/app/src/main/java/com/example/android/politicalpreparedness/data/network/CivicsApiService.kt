@@ -1,7 +1,9 @@
 package com.example.android.politicalpreparedness.data.network
 
+import com.example.android.politicalpreparedness.data.network.jsonadapter.DateAdapter
 import com.example.android.politicalpreparedness.data.network.jsonadapter.ElectionAdapter
 import com.example.android.politicalpreparedness.data.network.models.Election
+import com.example.android.politicalpreparedness.data.network.models.ElectionResponse
 import com.example.android.politicalpreparedness.data.network.models.RepresentativeResponse
 import com.example.android.politicalpreparedness.data.network.models.VoterInfoResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -19,7 +21,7 @@ private const val BASE_URL = "https://www.googleapis.com/civicinfo/v2/"
 private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .add(ElectionAdapter())
-        .add(Date())
+        .add(DateAdapter())
         .build()
 
 private val retrofit = Retrofit.Builder()
@@ -35,7 +37,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CivicsApiService {
     @GET("elections")
-    suspend fun getElections(): List<Election>
+    suspend fun getElections(): ElectionResponse
 
     @GET("voterInfo")
     suspend fun getVoterInfo(

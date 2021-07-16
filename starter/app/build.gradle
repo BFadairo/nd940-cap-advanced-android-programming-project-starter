@@ -83,4 +83,13 @@ dependencies {
 
     // Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Koin
+    implementation "io.insert-koin:koin-core:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
 }
