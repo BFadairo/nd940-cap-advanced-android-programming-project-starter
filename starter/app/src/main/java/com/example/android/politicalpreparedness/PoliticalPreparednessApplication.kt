@@ -33,11 +33,6 @@ class PoliticalPreparednessApplication: Application() {
                 )
             }
 
-            single {
-                VoterInfoViewModel(
-                    get() as ElectionRepository
-                )
-            }
             single { LocalRepository(get()) }
             single { RemoteRepository(get()) }
             single { CivicsApi.retrofitService as CivicsApiService }

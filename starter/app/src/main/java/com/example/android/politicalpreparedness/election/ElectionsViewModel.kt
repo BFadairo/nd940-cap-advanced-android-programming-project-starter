@@ -3,21 +3,31 @@ package com.example.android.politicalpreparedness.election
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.politicalpreparedness.database.ElectionDao
-import com.example.android.politicalpreparedness.network.models.Election
+import androidx.lifecycle.viewModelScope
+import com.example.android.politicalpreparedness.data.ElectionRepository
+import com.example.android.politicalpreparedness.data.network.models.Election
+import com.example.android.politicalpreparedness.data.network.models.Result
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 //TODO: Construct ViewModel and provide election datasource
-class ElectionsViewModel(private val datasource: ElectionDao): ViewModel() {
+class ElectionsViewModel(private val politicalRepository: ElectionRepository): ViewModel() {
 
-    //TODO: Create live data val for upcoming elections
     private val _upcomingElections = MutableLiveData<List<Election>>()
     val upcomingElections: LiveData<List<Election>>
         get() = _upcomingElections
 
-    //TODO: Create live data val for saved elections
     private val _savedElections = MutableLiveData<List<Election>>()
     val savedElections: LiveData<List<Election>>
         get() = _savedElections
+
+    private val _upcomingElectionsLoading = MutableLiveData<Boolean>()
+    val upcomingElectionsLoading: LiveData<Boolean>
+        get() = _upcomingElectionsLoading
+
+    private val _savedElectionsLoading = MutableLiveData<Boolean>()
+    val savedElectionsLoading: LiveData<Boolean>
+        get() = _savedElectionsLoading
 
     private val _eventNavigateToSavedElectionInfo = MutableLiveData<Boolean>()
     val eventNavigateToSavedElectionInfo: LiveData<Boolean>
@@ -27,9 +37,41 @@ class ElectionsViewModel(private val datasource: ElectionDao): ViewModel() {
     val eventNavigateToUpcomingElectionInfo: LiveData<Boolean>
         get() = _eventNavigateToUpcomingElectionInfo
 
-    //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
+    fun retrieveUpcomingElections() {
+        _upcomingElectionsLoading.value = true
+        viewModelScope.launch {
+            val upcomingElections = politicalRepository.getElections()
+            // Do I want to add some loading indiactor here?
+            when (upcomingElections) {
+                is Result.Success<List<Election>> -> {
+                    Timber.i("${upcomingElections.data}")
+                    _upcomingElections.postValue(upcomingElections.data)
+                    _upcomingElectionsLoading.postValue(false)
+                }
+                is Result.Error -> {
+                    Timber.e(upcomingElections.message)
+                    _upcomingElectionsLoading.postValue(false)
+                }
+            }
+        }
+    }
 
-    //TODO: Create functions to navigate to saved or upcoming election voter info
+    fun retrieveSavedElections() {
+        _savedElectionsLoading.value = true
+        viewModelScope.launch {
+            val savedElections = politicalRepository.getAllElections()
+            when (savedElections) {
+                is Result.Success<List<Election>> -> {
+                    _savedElections.postValue(savedElections.data)
+                    _savedElectionsLoading.postValue(false)
+                }
+                is Result.Error -> {
+                    Timber.e(savedElections.message)
+                    _savedElectionsLoading.postValue(false)
+                }
+            }
+        }
+    }
 
     fun navigateToUpcomingElectionInfo() {
         _eventNavigateToUpcomingElectionInfo.value = true

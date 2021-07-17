@@ -28,11 +28,11 @@ class ElectionRepository(
         return@withContext localRepository.getAllElections()
     }
 
-    override suspend fun getElectionById(id: Int): Result<Election> = withContext(ioDispatcher) {
+    override suspend fun getElectionById(id: Long): Result<Election> = withContext(ioDispatcher) {
         return@withContext localRepository.getElectionById(id)
     }
 
-    override suspend fun deleteElection(id: Int): Result<String> = withContext(ioDispatcher) {
+    override suspend fun deleteElection(id: Long): Result<String> = withContext(ioDispatcher) {
         return@withContext localRepository.deleteElection(id)
     }
 

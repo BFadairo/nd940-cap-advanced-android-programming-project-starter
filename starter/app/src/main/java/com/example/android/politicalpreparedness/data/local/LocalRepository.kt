@@ -1,6 +1,5 @@
 package com.example.android.politicalpreparedness.data.local
 
-import android.util.Log
 import com.example.android.politicalpreparedness.data.local.database.ElectionDao
 import com.example.android.politicalpreparedness.data.network.models.Election
 import com.example.android.politicalpreparedness.data.network.models.Result
@@ -33,7 +32,7 @@ class LocalRepository internal constructor(
         }
     }
 
-    override suspend fun getElectionById(id: Int): Result<Election> = withContext(ioDispatcher){
+    override suspend fun getElectionById(id: Long): Result<Election> = withContext(ioDispatcher){
         try {
             val election = electionDao.getElectionById(id)
             return@withContext Result.Success(election)
@@ -42,7 +41,7 @@ class LocalRepository internal constructor(
         }
     }
 
-    override suspend fun deleteElection(id: Int): Result<String> = withContext(ioDispatcher) {
+    override suspend fun deleteElection(id: Long): Result<String> = withContext(ioDispatcher) {
         try {
             electionDao.deleteElection(id)
             return@withContext Result.Success("Election successfully deleted from Database")

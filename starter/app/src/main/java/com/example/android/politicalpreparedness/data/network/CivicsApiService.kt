@@ -39,7 +39,7 @@ interface CivicsApiService {
     @GET("elections")
     suspend fun getElections(): ElectionResponse
 
-    @GET("voterInfo")
+    @GET("voterinfo")
     suspend fun getVoterInfo(
         @Query("address") address: String,
         @Query("electionId") electionId: Long?
@@ -50,6 +50,7 @@ interface CivicsApiService {
         @Query("address") address: String
     ): RepresentativeResponse
 }
+
 object CivicsApi {
     val retrofitService: CivicsApiService by lazy {
         retrofit.create(CivicsApiService::class.java)

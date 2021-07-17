@@ -2,13 +2,14 @@ package com.example.android.politicalpreparedness.election
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.politicalpreparedness.database.ElectionDao
+import com.example.android.politicalpreparedness.data.ElectionRepository
+import com.example.android.politicalpreparedness.data.local.database.ElectionDao
 
 //TODO: Create Factory to generate ElectionViewModel with provided election datasource
-class ElectionsViewModelFactory(private val datasource: ElectionDao): ViewModelProvider.Factory {
+class ElectionsViewModelFactory(private val politicalRepository: ElectionRepository): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ElectionsViewModel::class.java)) {
-            return ElectionsViewModel(datasource) as T
+            return ElectionsViewModel(politicalRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

@@ -18,8 +18,8 @@ class RemoteRepository internal constructor(
             val electionResponse = civicsApiService.getElections()
             return@withContext Result.Success(electionResponse.elections)
         } catch (e: HttpException) {
-            Timber.e("Error fetching elections: ${e.message()}")
-            return@withContext Result.Error("Could not retrieve elections from remote data source: ${e.message()}")
+            Timber.e("Error fetching elections: ${e.message}")
+            return@withContext Result.Error("Could not retrieve elections from remote data source: ${e.message}")
         }
     }
 
@@ -32,9 +32,9 @@ class RemoteRepository internal constructor(
             return@withContext Result.Success(voterInfoResponse)
         } catch (e: HttpException) {
             Timber.e(
-                "Error fetching voter info from remote data source: ${e.message()}"
+                "Error fetching voter info from remote data source: ${e.localizedMessage}"
             )
-            return@withContext Result.Error("Could not retrieve elections from remote data source ${e.message()}")
+            return@withContext Result.Error("Could not retrieve elections from remote data source ${e.localizedMessage}")
         }
     }
 
@@ -45,9 +45,9 @@ class RemoteRepository internal constructor(
                 return@withContext Result.Success(representatives)
             } catch (e: HttpException) {
                 Timber.e(
-                    "Error fetching representatives from remote data source: ${e.message()}"
+                    "Error fetching representatives from remote data source: ${e.message}"
                 )
-                return@withContext Result.Error("Could not retrieve representatives from remote data source: ${e.message()}")
+                return@withContext Result.Error("Could not retrieve representatives from remote data source: ${e.message}")
             }
         }
 }

@@ -7,7 +7,11 @@
     <string name="upcoming_elections_label"><u>Upcoming Elections</u></string>
     <string name="followed_elections"><u>Followed Elections</u></string>
     <string name="follow_election_text">Follow Election</string>
-
+    <string name="unfollow_election_text">Unfollow Election</string>
+    <string name="voting_locations"><u>Voting Locations</u></string>
+    <string name="ballot_locations"><u>Ballot Locations</u></string>
+    <string name="state_correspondence"><u>State Correspondence</u></string>
+    <string name="election_information"><u>Election Information</u></string>
     <!-- TODO: Add necessary string values -->
 
 </resources>

@@ -7,13 +7,13 @@ import com.example.android.politicalpreparedness.data.network.models.VoterInfoRe
 import retrofit2.http.Path
 
 interface ElectionDataLocalSource {
-    suspend fun insertElection(election: Election)
+    suspend fun insertElection(election: Election): Result<String>
 
     suspend fun getAllElections(): Result<List<Election>>
 
-    suspend fun getElectionById(id: Int): Result<Election>
+    suspend fun getElectionById(id: Long): Result<Election>
 
-    suspend fun deleteElection(id: Int)
+    suspend fun deleteElection(id: Long): Result<String>
 
-    suspend fun clear()
+    suspend fun clear(): Result<String>
 }
