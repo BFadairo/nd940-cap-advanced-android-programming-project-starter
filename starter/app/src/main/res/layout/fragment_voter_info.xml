@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
-        <!-- TODO: Add title to toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/election_name"
             android:layout_width="match_parent"
@@ -35,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
             android:text="@{voterInfoViewModel.election.electionDay.toString()}"
+            app:goneUnless="@{voterInfoViewModel.election.electionDay.toString()}"
             app:layout_constraintTop_toBottomOf="@id/election_name"
             tools:text="12 November 2055" />
 
@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/voting_locations"
+            android:onClick="@{() -> voterInfoViewModel.eventVoterInformation()}"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_header"
             tools:text="Voting Locations" />
@@ -68,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ballot_locations"
+            android:onClick="@{() -> voterInfoViewModel.eventBallotInformation()}"
             app:layout_constraintTop_toBottomOf="@id/state_locations"
             app:layout_constraintStart_toStartOf="@id/election_date" />
 
@@ -84,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/state_correspondence"
+            app:goneUnless="@{voterInfoViewModel.voterInfo.state.get(0).electionAdministrationBody.correspondenceAddress.toFormattedString()}"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_ballot" />
@@ -94,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{voterInfoViewModel.voterInfo.state.get(0).electionAdministrationBody.correspondenceAddress.toFormattedString()}"
+            app:goneUnless="@{voterInfoViewModel.voterInfo.state.get(0).electionAdministrationBody.correspondenceAddress.toFormattedString()}"
             app:layout_constraintTop_toBottomOf="@id/state_correspondence_header"
             app:layout_constraintStart_toStartOf="@id/election_date" />
 
