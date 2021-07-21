@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_padding">8dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
+    <dimen name="extra_large_margin">32dp</dimen>
 
-    <!-- TODO: Add necessary dimension values -->s
+    <dimen name="header_text_size">24sp</dimen>
+    <dimen name="header_text_size_alt">22sp</dimen>
+    <dimen name="sub_header_text_size">18sp</dimen>
+
+    <dimen name="list_item_small_text_size">12sp</dimen>
+    <dimen name="list_item_medium_text_size">16sp</dimen>
+
+    <dimen name="default_corner_radius">8dp</dimen>
 
 </resources>

@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:orientation="vertical"
         android:onClick="@{() -> clickListener.onClick(election)}"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@{election.name}"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.21"
             app:layout_constraintStart_toStartOf="parent"

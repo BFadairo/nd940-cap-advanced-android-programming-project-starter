@@ -18,7 +18,7 @@
             android:id="@+id/representativePhoto"
             android:layout_width="45dp"
             android:layout_height="50dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/default_margin"
             app:profileImage="@{representative.official.photoUrl}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/medium_margin"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/representativePhoto"
             app:layout_constraintStart_toEndOf="@+id/representativePhoto"
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{representative.office.name}"
-                android:textSize="12sp"
+                android:textSize="@dimen/list_item_small_text_size"
                 tools:text="President Of The Planet" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{representative.official.name}"
-                android:textSize="16sp"
+                android:textSize="@dimen/list_item_medium_text_size"
                 tools:text="Joe Shmoe" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{representative.official.party}"
-                android:textSize="12sp"
+                android:textSize="@dimen/list_item_small_text_size"
                 tools:text="Independent" />
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:id="@+id/wwwIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/default_margin"
             app:srcCompat="@drawable/ic_www"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toStartOf="@+id/facebookIcon"
@@ -73,7 +73,7 @@
             android:id="@+id/facebookIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="@+id/wwwIcon"
             app:layout_constraintEnd_toStartOf="@+id/twitterIcon"
             app:layout_constraintTop_toTopOf="@+id/wwwIcon"
@@ -83,7 +83,7 @@
             android:id="@+id/twitterIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="@+id/facebookIcon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/facebookIcon"

@@ -28,10 +28,10 @@
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="@dimen/extra_large_margin"
+            android:layout_marginEnd="@dimen/extra_large_margin"
             android:text="@string/login_button_text"
-            app:cornerRadius="8dp"
+            app:cornerRadius="@dimen/default_corner_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
