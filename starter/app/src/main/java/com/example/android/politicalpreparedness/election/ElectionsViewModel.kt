@@ -10,7 +10,6 @@ import com.example.android.politicalpreparedness.data.network.models.Result
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-//TODO: Construct ViewModel and provide election datasource
 class ElectionsViewModel(private val politicalRepository: ElectionRepository): ViewModel() {
 
     private val _upcomingElections = MutableLiveData<List<Election>>()
