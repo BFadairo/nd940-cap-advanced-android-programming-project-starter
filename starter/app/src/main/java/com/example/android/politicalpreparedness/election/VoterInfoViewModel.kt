@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.data.ElectionRepository
 import com.example.android.politicalpreparedness.data.local.database.ElectionDao
+import com.example.android.politicalpreparedness.data.network.models.Address
 import com.example.android.politicalpreparedness.data.network.models.Election
 import com.example.android.politicalpreparedness.data.network.models.Result
 import com.example.android.politicalpreparedness.data.network.models.VoterInfoResponse
@@ -40,16 +41,15 @@ class VoterInfoViewModel(private val politicalRepository: ElectionRepository, pr
 
     init {
         checkIfElectionInDb()
-        retrieveVoterInfo()
     }
 
     private fun parseVoterInfoResponse(response: VoterInfoResponse) {
         _election.value = response.election
     }
 
-    private fun retrieveVoterInfo() {
+    private fun retrieveVoterInfo(address: Address) {
         viewModelScope.launch {
-            val voterInfo = politicalRepository.getVoterInfo("68 Green Ave", electionId)
+            val voterInfo = politicalRepository.getVoterInfo(address.toFormattedString(), electionId)
             when (voterInfo) {
                 is Result.Success<VoterInfoResponse> -> {
                     _voterInfo.postValue(voterInfo.data)
@@ -120,6 +120,12 @@ class VoterInfoViewModel(private val politicalRepository: ElectionRepository, pr
                     }
                 }
             }
+        }
+    }
+
+    fun validateAddress(passedAddress: Address?) {
+        if (passedAddress != null) {
+            retrieveVoterInfo(passedAddress)
         }
     }
 
