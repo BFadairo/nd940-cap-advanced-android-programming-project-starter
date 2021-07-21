@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -96,4 +97,9 @@ dependencies {
     testImplementation "io.insert-koin:koin-test:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-android-compat:$koin_version"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    implementation 'com.firebaseui:firebase-ui-auth:5.0.0'
+
 }
