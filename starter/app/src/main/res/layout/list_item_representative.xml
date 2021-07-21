@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
             name="representative"
             type="com.example.android.politicalpreparedness.representative.model.Representative" />
@@ -12,12 +11,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 
         <ImageView
             android:id="@+id/representativePhoto"
-            android:layout_width="88dp"
-            android:layout_height="94dp"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             app:profileImage="@{representative.official.photoUrl}"
             app:layout_constraintStart_toStartOf="parent"

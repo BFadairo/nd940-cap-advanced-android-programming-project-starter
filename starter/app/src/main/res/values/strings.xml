@@ -12,6 +12,13 @@
     <string name="ballot_locations"><u>Ballot Locations</u></string>
     <string name="state_correspondence"><u>State Correspondence</u></string>
     <string name="election_information"><u>Election Information</u></string>
+    <string name="use_my_location">Use My Location</string>
+    <string name="my_representatives"><u>My Representatives</u></string>
+    <string name="representative_search">Representative Search</string>
+    <string name="address_line_1_hint">Address Line 1</string>
+    <string name="address_line_2_hint">Address Line 2</string>
+    <string name="city_hint">City</string>
+    <string name="zip_hint">Zip</string>
     <!-- TODO: Add necessary string values -->
 
 </resources>
