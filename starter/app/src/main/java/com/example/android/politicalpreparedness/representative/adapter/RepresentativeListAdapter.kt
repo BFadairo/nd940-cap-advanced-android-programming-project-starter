@@ -49,10 +49,10 @@ class RepresentativeViewHolder(val binding: ListItemRepresentativeBinding): Recy
 
     private fun showSocialLinks(channels: List<Channel>) {
         val facebookUrl = getFacebookUrl(channels)
-        if (!facebookUrl.isNullOrBlank()) { enableLink(binding.facebookIcon, facebookUrl) }
+        if (!facebookUrl.isNullOrBlank()) { enableLink(binding.facebookIcon, facebookUrl) } else { binding.facebookIcon.visibility = View.GONE }
 
         val twitterUrl = getTwitterUrl(channels)
-        if (!twitterUrl.isNullOrBlank()) { enableLink(binding.twitterIcon, twitterUrl) }
+        if (!twitterUrl.isNullOrBlank()) { enableLink(binding.twitterIcon, twitterUrl) } else { binding.twitterIcon.visibility = View.GONE }
     }
 
     private fun showWWWLinks(urls: List<String>) {
