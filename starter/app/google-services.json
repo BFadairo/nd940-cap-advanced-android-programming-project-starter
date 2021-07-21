@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "341386703520",
+    "project_id": "udacity-capstone-319901",
+    "storage_bucket": "udacity-capstone-319901.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341386703520:android:a7ed667948709315f58fc5",
+        "android_client_info": {
+          "package_name": "com.example.android.politicalpreparedness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341386703520-tne2cmnpv68g2monml68opa1ddbncugo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-nVKndPssBgs9geyQDVSbhJsBkd6Ls70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341386703520-tne2cmnpv68g2monml68opa1ddbncugo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
